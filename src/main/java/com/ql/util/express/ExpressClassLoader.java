@@ -39,8 +39,9 @@ public class ExpressClassLoader extends ClassLoader {
 			}
 		}
 
-		if (clasz == null)
-			throw new ClassNotFoundException(name);
+		if (clasz == null) {
+            throw new ClassNotFoundException(name);
+        }
 		return clasz;
 	}
 
@@ -80,12 +81,13 @@ public class ExpressClassLoader extends ClassLoader {
 			} catch (Throwable e) {
 			}
 		}
-		if (clasz == null)
-			try {
-				clasz = Thread.currentThread().getContextClassLoader()
-						.loadClass(name);
-			} catch (Throwable e) {
-			}
+		if (clasz == null) {
+            try {
+                clasz = Thread.currentThread().getContextClassLoader()
+                        .loadClass(name);
+            } catch (Throwable e) {
+            }
+        }
 		return clasz;
 	}
 }

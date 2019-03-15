@@ -15,14 +15,15 @@ public class OperatorMultiDiv extends Operator {
 	public Object executeInner(Object op1,
 			Object op2) throws Exception {
 		Object obj = null;
-		if (this.getName().equals("*"))
-			obj = OperatorOfNumber.multiply(op1, op2,this.isPrecise);
-		else if (this.getName().equals("/"))
-			obj = OperatorOfNumber.divide(op1, op2,this.isPrecise);
-		else if (this.getName().equals("%"))
-			obj = OperatorOfNumber.modulo(op1, op2);
-		else if (this.getName().equals("mod"))
-			obj = OperatorOfNumber.modulo(op1, op2);
+		if (this.getName().equals("*")) {
+            obj = OperatorOfNumber.multiply(op1, op2,this.isPrecise);
+        } else if (this.getName().equals("/")) {
+            obj = OperatorOfNumber.divide(op1, op2,this.isPrecise);
+        } else if (this.getName().equals("%")) {
+            obj = OperatorOfNumber.modulo(op1, op2);
+        } else if (this.getName().equals("mod")) {
+            obj = OperatorOfNumber.modulo(op1, op2);
+        }
 
 		return obj;
 

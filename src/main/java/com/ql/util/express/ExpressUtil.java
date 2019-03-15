@@ -45,7 +45,9 @@ public class ExpressUtil {
 	public static final String DT_boolean = "boolean";
 
 	public static Map<String,Object> methodCache = new ConcurrentHashMap<String, Object>();
-	
+
+	private static Pattern DOLLAR_NUMBER_PATTERN = Pattern.compile("\\$\\d+");
+
 	public static Class<?>[][] classMatchs =new Class[][]{
 			//原始数据类型
 			{BigDecimal.class,double.class},{BigDecimal.class,float.class},{BigDecimal.class,long.class},{BigDecimal.class,int.class}, {BigDecimal.class,short.class},{BigDecimal.class,byte.class},
@@ -62,43 +64,56 @@ public class ExpressUtil {
 	
 	public static Class<?> getSimpleDataType(Class<?> aClass) {
 		if (aClass.isPrimitive()){
-			if (Integer.class.equals(aClass))
-				return Integer.TYPE;
-			if (Short.class.equals(aClass))
-				return Short.TYPE;
-			if (Long.class.equals(aClass))
-				return Long.TYPE;
-			if (Double.class.equals(aClass))
-				return Double.TYPE;
-			if (Float.class.equals(aClass))
-				return Float.TYPE;
-			if (Byte.class.equals(aClass))
-				return Byte.TYPE;
-			if (Character.class.equals(aClass))
-				return Character.TYPE;
-			if (Boolean.class.equals(aClass))
-				return Boolean.TYPE;
+			if (Integer.class.equals(aClass)) {
+                return Integer.TYPE;
+            }
+			if (Short.class.equals(aClass)) {
+                return Short.TYPE;
+            }
+			if (Long.class.equals(aClass)) {
+                return Long.TYPE;
+            }
+			if (Double.class.equals(aClass)) {
+                return Double.TYPE;
+            }
+			if (Float.class.equals(aClass)) {
+                return Float.TYPE;
+            }
+			if (Byte.class.equals(aClass)) {
+                return Byte.TYPE;
+            }
+			if (Character.class.equals(aClass)) {
+                return Character.TYPE;
+            }
+			if (Boolean.class.equals(aClass)) {
+                return Boolean.TYPE;
+            }
 			return aClass;
 		}else{
 			return aClass;
 		}
 	}
     public static boolean isAssignable(Class<?> target, Class<?> source) {
-    	if (target == source)
-			return true;
+    	if (target == source) {
+            return true;
+        }
     	if(target.isArray() &&  source.isArray()){
     		return isAssignable(target.getComponentType(),source.getComponentType());
     	}
     	return isAssignablePrivate(target,source);
     }
 	public static boolean isAssignablePrivate(Class<?> target, Class<?> source) {
-		if (target == source)
-			return true;
+		if (target == source) {
+            return true;
+        }
 
-		if (target == null)
-			return false;
+		if (target == null) {
+            return false;
+        }
 		if (source == null)//null转换
-			return !target.isPrimitive();
+        {
+            return !target.isPrimitive();
+        }
 		
 		if (target.isAssignableFrom(source) == true){
 			return true;
@@ -108,35 +123,39 @@ public class ExpressUtil {
 		}
 		
 		if (target.isPrimitive() == false) {
-			if (target == Byte.class)
-				target = byte.class;
-			else if (target == Short.class)
-				target = short.class;
-			else if (target == Integer.class)
-				target = int.class;
-			else if (target == Long.class)
-				target = long.class;
-			else if (target == Float.class)
-				target = float.class;
-			else if (target == Double.class)
-				target = double.class;
+			if (target == Byte.class) {
+                target = byte.class;
+            } else if (target == Short.class) {
+                target = short.class;
+            } else if (target == Integer.class) {
+                target = int.class;
+            } else if (target == Long.class) {
+                target = long.class;
+            } else if (target == Float.class) {
+                target = float.class;
+            } else if (target == Double.class) {
+                target = double.class;
+            }
 		}
 		if (source.isPrimitive() == false) {
-			if (source == Byte.class)
-				source = byte.class;
-			else if (source == Short.class)
-				source = short.class;
-			else if (source == Integer.class)
-				source = int.class;
-			else if (source == Long.class)
-				source = long.class;
-			else if (source == Float.class)
-				source = float.class;
-			else if (source == Double.class)
-				source = double.class;
+			if (source == Byte.class) {
+                source = byte.class;
+            } else if (source == Short.class) {
+                source = short.class;
+            } else if (source == Integer.class) {
+                source = int.class;
+            } else if (source == Long.class) {
+                source = long.class;
+            } else if (source == Float.class) {
+                source = float.class;
+            } else if (source == Double.class) {
+                source = double.class;
+            }
 		}
 		if (target == source)// 转换后需要在判断一下
-			return true;
+        {
+            return true;
+        }
 
 		for (int i = 0; i < classMatchs.length; i++) {
 			if (target == classMatchs[i][0] && source == classMatchs[i][1]) {
@@ -148,50 +167,62 @@ public class ExpressUtil {
 		
 	}
 	public static boolean isAssignableOld(Class<?> lhsType, Class<?> rhsType) {
-		if (lhsType == null)
-			return false;
-		if (rhsType == null)
-			return !lhsType.isPrimitive();
+		if (lhsType == null) {
+            return false;
+        }
+		if (rhsType == null) {
+            return !lhsType.isPrimitive();
+        }
 
 		if (lhsType.isPrimitive() && rhsType.isPrimitive()) {
-			if (lhsType == rhsType)
-				return true;
+			if (lhsType == rhsType) {
+                return true;
+            }
 
 			if ((rhsType == Byte.TYPE)
 					&& (lhsType == Short.TYPE || lhsType == Integer.TYPE
-							|| lhsType == Long.TYPE || lhsType == Float.TYPE || lhsType == Double.TYPE))
-				return true;
+							|| lhsType == Long.TYPE || lhsType == Float.TYPE || lhsType == Double.TYPE)) {
+                return true;
+            }
 
 			if ((rhsType == Short.TYPE)
 					&& (lhsType == Integer.TYPE || lhsType == Long.TYPE
-							|| lhsType == Float.TYPE || lhsType == Double.TYPE))
-				return true;
+							|| lhsType == Float.TYPE || lhsType == Double.TYPE)) {
+                return true;
+            }
 
 			if ((rhsType == Character.TYPE)
 					&& (lhsType == Integer.TYPE || lhsType == Long.TYPE
-							|| lhsType == Float.TYPE || lhsType == Double.TYPE))
-				return true;
+							|| lhsType == Float.TYPE || lhsType == Double.TYPE)) {
+                return true;
+            }
 
 			if ((rhsType == Integer.TYPE)
-					&& (lhsType == Long.TYPE || lhsType == Float.TYPE || lhsType == Double.TYPE))
-				return true;
+					&& (lhsType == Long.TYPE || lhsType == Float.TYPE || lhsType == Double.TYPE)) {
+                return true;
+            }
 
 			if ((rhsType == Long.TYPE)
-					&& (lhsType == Float.TYPE || lhsType == Double.TYPE))
-				return true;
+					&& (lhsType == Float.TYPE || lhsType == Double.TYPE)) {
+                return true;
+            }
 
-			if ((rhsType == Float.TYPE) && (lhsType == Double.TYPE))
-				return true;
-		} else if (lhsType.isAssignableFrom(rhsType))
-			return true;
+			if ((rhsType == Float.TYPE) && (lhsType == Double.TYPE)) {
+                return true;
+            }
+		} else if (lhsType.isAssignableFrom(rhsType)) {
+            return true;
+        }
 
 		return false;
 	}
 
 	public static boolean isSignatureAssignable(Class<?>[] from, Class<?>[] to) {
-		for (int i = 0; i < from.length; i++)
-			if (!isAssignable(to[i], from[i]))
-				return false;
+		for (int i = 0; i < from.length; i++) {
+            if (!isAssignable(to[i], from[i])) {
+                return false;
+            }
+        }
 		return true;
 	}
 
@@ -210,10 +241,11 @@ public class ExpressUtil {
 			}
 		}
 
-		if (bestMatch != null)
-			return bestMatchIndex;
-		else
-			return -1;
+		if (bestMatch != null) {
+            return bestMatchIndex;
+        } else {
+            return -1;
+        }
 	}
 
 	public static String createCacheKey(Class<?> aBaseClass,
@@ -297,8 +329,9 @@ public class ExpressUtil {
 	public static Method findMostSpecificMethod(Class<?>[] idealMatch,
 			Method[] methods) {
 		Class<?>[][] candidateSigs = new Class[methods.length][];
-		for (int i = 0; i < methods.length; i++)
-			candidateSigs[i] = methods[i].getParameterTypes();
+		for (int i = 0; i < methods.length; i++) {
+            candidateSigs[i] = methods[i].getParameterTypes();
+        }
 
 		int match = findMostSpecificSignature(idealMatch, candidateSigs);
 		return match == -1 ? null : methods[match];
@@ -308,21 +341,24 @@ public class ExpressUtil {
 	private static List<Method> gatherMethodsRecursive(Class<?> baseClass,
 			String methodName, int numArgs, boolean publicOnly,
 			boolean isStatic, List<Method> candidates) {
-		if (candidates == null)
-			candidates = new ArrayList<Method>();
+		if (candidates == null) {
+            candidates = new ArrayList<Method>();
+        }
 
 		addCandidates(baseClass.getDeclaredMethods(), methodName, numArgs,
 				publicOnly, isStatic, candidates);
 
 		Class<?>[] intfs = baseClass.getInterfaces();
-		for (int i = 0; i < intfs.length; i++)
-			gatherMethodsRecursive(intfs[i], methodName, numArgs, publicOnly,
-					isStatic, candidates);
+		for (int i = 0; i < intfs.length; i++) {
+            gatherMethodsRecursive(intfs[i], methodName, numArgs, publicOnly,
+                    isStatic, candidates);
+        }
 
 		Class<?> superclass = baseClass.getSuperclass();
-		if (superclass != null)
-			gatherMethodsRecursive(superclass, methodName, numArgs, publicOnly,
-					isStatic, candidates);
+		if (superclass != null) {
+            gatherMethodsRecursive(superclass, methodName, numArgs, publicOnly,
+                    isStatic, candidates);
+        }
 
 		return candidates;
 	}
@@ -334,8 +370,9 @@ public class ExpressUtil {
 			if (m.getName().equals(methodName)
 					&& (m.getParameterTypes().length == numArgs)
 					&& (publicOnly == false || isPublic(m)
-							&& (isStatic == false || isStatic(m))))
-				candidates.add(m);
+							&& (isStatic == false || isStatic(m)))) {
+                candidates.add(m);
+            }
 		}
 		return candidates;
 	}
@@ -354,8 +391,9 @@ public class ExpressUtil {
 
 	public static Class<?> getJavaClass(String type) {
 		int index = type.indexOf("[]");
-		if (index < 0)
-			return getJavaClassInner(type);
+		if (index < 0) {
+            return getJavaClassInner(type);
+        }
 
 		StringBuilder arrayString = new StringBuilder();
 		arrayString.append("[");
@@ -398,48 +436,69 @@ public class ExpressUtil {
 
 	public static Class<?> getJavaClassInner(String type) {
 
-		if (type.equals(DT_STRING))
-			return String.class;
-		if (type.equals(DT_SHORT))
-			return Short.class;
-		if (type.equals(DT_INTEGER))
-			return Integer.class;
-		if (type.equals(DT_LONG))
-			return Long.class;
-		if (type.equals(DT_DOUBLE))
-			return Double.class;
-		if (type.equals(DT_FLOAT))
-			return Float.class;
-		if (type.equals(DT_BYTE))
-			return Byte.class;
-		if (type.equals(DT_CHAR) || type.equals("Character"))
-			return Character.class;
-		if (type.equals(DT_BOOLEAN))
-			return Boolean.class;
-		if (type.equals(DT_DATE))
-			return java.sql.Date.class;
-		if (type.equals(DT_TIME))
-			return java.sql.Time.class;
-		if (type.equals(DT_DATETIME))
-			return java.sql.Timestamp.class;
-		if (type.equals(DT_OBJECT))
-			return Object.class;
-		if (type.equals(DT_short))
-			return short.class;
-		if (type.equals(DT_int))
-			return int.class;
-		if (type.equals(DT_long))
-			return long.class;
-		if (type.equals(DT_double))
-			return double.class;
-		if (type.equals(DT_float))
-			return float.class;
-		if (type.equals(DT_byte))
-			return byte.class;
-		if (type.equals(DT_char))
-			return char.class;
-		if (type.equals(DT_boolean))
-			return boolean.class;
+		if (type.equals(DT_STRING)) {
+            return String.class;
+        }
+		if (type.equals(DT_SHORT)) {
+            return Short.class;
+        }
+		if (type.equals(DT_INTEGER)) {
+            return Integer.class;
+        }
+		if (type.equals(DT_LONG)) {
+            return Long.class;
+        }
+		if (type.equals(DT_DOUBLE)) {
+            return Double.class;
+        }
+		if (type.equals(DT_FLOAT)) {
+            return Float.class;
+        }
+		if (type.equals(DT_BYTE)) {
+            return Byte.class;
+        }
+		if (type.equals(DT_CHAR) || type.equals("Character")) {
+            return Character.class;
+        }
+		if (type.equals(DT_BOOLEAN)) {
+            return Boolean.class;
+        }
+		if (type.equals(DT_DATE)) {
+            return java.sql.Date.class;
+        }
+		if (type.equals(DT_TIME)) {
+            return java.sql.Time.class;
+        }
+		if (type.equals(DT_DATETIME)) {
+            return java.sql.Timestamp.class;
+        }
+		if (type.equals(DT_OBJECT)) {
+            return Object.class;
+        }
+		if (type.equals(DT_short)) {
+            return short.class;
+        }
+		if (type.equals(DT_int)) {
+            return int.class;
+        }
+		if (type.equals(DT_long)) {
+            return long.class;
+        }
+		if (type.equals(DT_double)) {
+            return double.class;
+        }
+		if (type.equals(DT_float)) {
+            return float.class;
+        }
+		if (type.equals(DT_byte)) {
+            return byte.class;
+        }
+		if (type.equals(DT_char)) {
+            return char.class;
+        }
+		if (type.equals(DT_boolean)) {
+            return boolean.class;
+        }
 		try {
 			return loadClass(type);
 		} catch (ClassNotFoundException ex) {
@@ -508,8 +567,8 @@ public class ExpressUtil {
 		if (str == null || parameters == null || parameters.length == 0) {
 			return str;
 		}
-		Pattern p = Pattern.compile("\\$\\d+");
-		Matcher m = p.matcher(str);
+
+		Matcher m = DOLLAR_NUMBER_PATTERN.matcher(str);
 		StringBuffer sb = new StringBuffer();
 		while (m.find()) {
 			int index = Integer.parseInt(m.group().substring(1)) - 1;
@@ -602,8 +661,9 @@ public class ExpressUtil {
  * @return
  */
 	public static Object castObject(Object value, Class<?> type,boolean isForce){
-		if (value == null)
-			return null;
+		if (value == null) {
+            return null;
+        }
 		if (value.getClass() == type || type.isAssignableFrom(value.getClass())) {
 			return value;
 		}

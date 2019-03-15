@@ -71,22 +71,30 @@ public class ExpressPackage {
 				}
 				return result;
 			}
-			if (Integer.TYPE.getName().equals(name) == true)
-				return Integer.TYPE;
-			if (Short.TYPE.getName().equals(name) == true)
-				return Short.TYPE;
-			if (Long.TYPE.getName().equals(name) == true)
-				return Long.TYPE;
-			if (Double.TYPE.getName().equals(name) == true)
-				return Double.TYPE;
-			if (Float.TYPE.getName().equals(name) == true)
-				return Float.TYPE;
-			if (Byte.TYPE.getName().equals(name) == true)
-				return Byte.TYPE;
-			if (Character.TYPE.getName().equals(name) == true)
-				return Character.TYPE;
-			if (Boolean.TYPE.getName().equals(name) == true)
-				return Boolean.TYPE;
+			if (Integer.TYPE.getName().equals(name) == true) {
+                return Integer.TYPE;
+            }
+			if (Short.TYPE.getName().equals(name) == true) {
+                return Short.TYPE;
+            }
+			if (Long.TYPE.getName().equals(name) == true) {
+                return Long.TYPE;
+            }
+			if (Double.TYPE.getName().equals(name) == true) {
+                return Double.TYPE;
+            }
+			if (Float.TYPE.getName().equals(name) == true) {
+                return Float.TYPE;
+            }
+			if (Byte.TYPE.getName().equals(name) == true) {
+                return Byte.TYPE;
+            }
+			if (Character.TYPE.getName().equals(name) == true) {
+                return Character.TYPE;
+            }
+			if (Boolean.TYPE.getName().equals(name) == true) {
+                return Boolean.TYPE;
+            }
 		}
 		if (this.m_packages != null) {
 			for (int i = 0; i < m_packages.size(); i++) {

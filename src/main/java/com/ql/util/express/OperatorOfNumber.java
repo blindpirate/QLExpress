@@ -35,13 +35,27 @@ public class OperatorOfNumber {
 	 * @return
 	 */
     public static int getSeq(Class<?> aClass){
-    	if(aClass == Byte.class || aClass == byte.class) return NumberType.NUMBER_TYPE_BYTE;
-    	if(aClass == Short.class || aClass == short.class) return NumberType.NUMBER_TYPE_SHORT;
-    	if(aClass == Integer.class || aClass == int.class) return NumberType.NUMBER_TYPE_INT;
-    	if(aClass == Long.class || aClass == long.class) return NumberType.NUMBER_TYPE_LONG;
-    	if(aClass == Float.class || aClass == float.class) return NumberType.NUMBER_TYPE_FLOAT;
-    	if(aClass == Double.class || aClass == double.class) return NumberType.NUMBER_TYPE_DOUBLE;
-    	if(aClass == BigDecimal.class) return NumberType.NUMBER_TYPE_BIGDECIMAL;
+    	if(aClass == Byte.class || aClass == byte.class) {
+            return NumberType.NUMBER_TYPE_BYTE;
+        }
+    	if(aClass == Short.class || aClass == short.class) {
+            return NumberType.NUMBER_TYPE_SHORT;
+        }
+    	if(aClass == Integer.class || aClass == int.class) {
+            return NumberType.NUMBER_TYPE_INT;
+        }
+    	if(aClass == Long.class || aClass == long.class) {
+            return NumberType.NUMBER_TYPE_LONG;
+        }
+    	if(aClass == Float.class || aClass == float.class) {
+            return NumberType.NUMBER_TYPE_FLOAT;
+        }
+    	if(aClass == Double.class || aClass == double.class) {
+            return NumberType.NUMBER_TYPE_DOUBLE;
+        }
+    	if(aClass == BigDecimal.class) {
+            return NumberType.NUMBER_TYPE_BIGDECIMAL;
+        }
     	throw new RuntimeException("不能处理的数据类型：" + aClass.getName());
     }
 	/**
@@ -108,43 +122,67 @@ public class OperatorOfNumber {
 		if(type == 1)  {
 			byte o1 =	((Number)op1).byteValue();
 			byte o2 =  ((Number)op2).byteValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 2) {
 			short o1 =	((Number)op1).shortValue();
 			short o2 =  ((Number)op2).shortValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 3) {
 			int o1 =	((Number)op1).intValue();
 			int o2 =  ((Number)op2).intValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 4) {
 			long o1 =	((Number)op1).longValue();
 			long o2 =  ((Number)op2).longValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 5) {
 			float o1 =	((Number)op1).floatValue();
 			float o2 =  ((Number)op2).floatValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 6){
 			double o1 =	((Number)op1).doubleValue();
 			double o2 =  ((Number)op2).doubleValue();
-			if(o1 == o2) return 0;
-			if(o1 < o2) return -1;
+			if(o1 == o2) {
+                return 0;
+            }
+			if(o1 < o2) {
+                return -1;
+            }
 			return 1;
 		}
 		if(type == 7){
@@ -210,13 +248,27 @@ class NormalNumberOperator {
 		int type1 = OperatorOfNumber.getSeq(op1.getClass());
 		int type2 = OperatorOfNumber.getSeq(op2.getClass());
 		int type = type1 >  type2 ? type1:type2;
-		if(type == NumberType.NUMBER_TYPE_BYTE) return op1.byteValue() + op2.byteValue();
-		if(type == NumberType.NUMBER_TYPE_SHORT) return op1.shortValue() + op2.shortValue();
-		if(type == NumberType.NUMBER_TYPE_INT) return op1.intValue() + op2.intValue();
-		if(type == NumberType.NUMBER_TYPE_LONG) return op1.longValue() + op2.longValue();
-		if(type == NumberType.NUMBER_TYPE_FLOAT) return op1.floatValue() + op2.floatValue();
-		if(type == NumberType.NUMBER_TYPE_DOUBLE) return op1.doubleValue() + op2.doubleValue();
-		if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) return new BigDecimal(op1.toString()).add(new BigDecimal(op2.toString()));		
+		if(type == NumberType.NUMBER_TYPE_BYTE) {
+            return op1.byteValue() + op2.byteValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_SHORT) {
+            return op1.shortValue() + op2.shortValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_INT) {
+            return op1.intValue() + op2.intValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_LONG) {
+            return op1.longValue() + op2.longValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_FLOAT) {
+            return op1.floatValue() + op2.floatValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_DOUBLE) {
+            return op1.doubleValue() + op2.doubleValue();
+        }
+		if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) {
+            return new BigDecimal(op1.toString()).add(new BigDecimal(op2.toString()));
+        }
 		throw new Exception("不支持的对象执行了\"+\"操作");
 	}
 
@@ -226,13 +278,27 @@ class NormalNumberOperator {
 			int type1 = OperatorOfNumber.getSeq(op1.getClass());
 			int type2 = OperatorOfNumber.getSeq(op2.getClass());
 			int type = type1 >  type2 ? type1:type2;
-			if(type == NumberType.NUMBER_TYPE_BYTE) return op1.byteValue() - op2.byteValue();
-			if(type == NumberType.NUMBER_TYPE_SHORT) return op1.shortValue() - op2.shortValue();
-			if(type == NumberType.NUMBER_TYPE_INT) return op1.intValue() - op2.intValue();
-			if(type == NumberType.NUMBER_TYPE_LONG) return op1.longValue() - op2.longValue();
-			if(type == NumberType.NUMBER_TYPE_FLOAT) return op1.floatValue() - op2.floatValue();
-			if(type == NumberType.NUMBER_TYPE_DOUBLE) return op1.doubleValue() - op2.doubleValue();
-			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) return new BigDecimal(op1.toString()).subtract(new BigDecimal(op2.toString()));
+			if(type == NumberType.NUMBER_TYPE_BYTE) {
+                return op1.byteValue() - op2.byteValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_SHORT) {
+                return op1.shortValue() - op2.shortValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_INT) {
+                return op1.intValue() - op2.intValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_LONG) {
+                return op1.longValue() - op2.longValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_FLOAT) {
+                return op1.floatValue() - op2.floatValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_DOUBLE) {
+                return op1.doubleValue() - op2.doubleValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) {
+                return new BigDecimal(op1.toString()).subtract(new BigDecimal(op2.toString()));
+            }
 			throw new Exception("不支持的对象执行了\"-\"操作");
 	    }
 
@@ -240,26 +306,54 @@ class NormalNumberOperator {
 			int type1 = OperatorOfNumber.getSeq(op1.getClass());
 			int type2 = OperatorOfNumber.getSeq(op2.getClass());
 			int type = type1 >  type2 ? type1:type2;
-			if(type == NumberType.NUMBER_TYPE_BYTE) return op1.byteValue() * op2.byteValue();
-			if(type == NumberType.NUMBER_TYPE_SHORT) return op1.shortValue() * op2.shortValue();
-			if(type == NumberType.NUMBER_TYPE_INT) return op1.intValue() * op2.intValue();
-			if(type == NumberType.NUMBER_TYPE_LONG) return op1.longValue() * op2.longValue();
-			if(type == NumberType.NUMBER_TYPE_FLOAT) return op1.floatValue() * op2.floatValue();
-			if(type == NumberType.NUMBER_TYPE_DOUBLE) return op1.doubleValue() * op2.doubleValue();
-			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) return new BigDecimal(op1.toString()).multiply(new BigDecimal(op2.toString()));
+			if(type == NumberType.NUMBER_TYPE_BYTE) {
+                return op1.byteValue() * op2.byteValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_SHORT) {
+                return op1.shortValue() * op2.shortValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_INT) {
+                return op1.intValue() * op2.intValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_LONG) {
+                return op1.longValue() * op2.longValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_FLOAT) {
+                return op1.floatValue() * op2.floatValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_DOUBLE) {
+                return op1.doubleValue() * op2.doubleValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) {
+                return new BigDecimal(op1.toString()).multiply(new BigDecimal(op2.toString()));
+            }
 			throw new Exception("不支持的对象执行了\"*\"操作");
 	    }
 	   public static Number divideNormal(Number op1,Number op2) throws Exception{
 			int type1 = OperatorOfNumber.getSeq(op1.getClass());
 			int type2 = OperatorOfNumber.getSeq(op2.getClass());
 			int type = type1 >  type2 ? type1:type2;
-			if(type == NumberType.NUMBER_TYPE_BYTE) return op1.byteValue() / op2.byteValue();
-			if(type == NumberType.NUMBER_TYPE_SHORT) return op1.shortValue() / op2.shortValue();
-			if(type == NumberType.NUMBER_TYPE_INT) return op1.intValue() / op2.intValue();
-			if(type == NumberType.NUMBER_TYPE_LONG) return op1.longValue() / op2.longValue();
-			if(type == NumberType.NUMBER_TYPE_FLOAT) return op1.floatValue() / op2.floatValue();
-			if(type == NumberType.NUMBER_TYPE_DOUBLE) return op1.doubleValue() / op2.doubleValue();
-			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) return new BigDecimal(op1.toString()).divide(new BigDecimal(op2.toString()), BigDecimal.ROUND_HALF_UP);
+			if(type == NumberType.NUMBER_TYPE_BYTE) {
+                return op1.byteValue() / op2.byteValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_SHORT) {
+                return op1.shortValue() / op2.shortValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_INT) {
+                return op1.intValue() / op2.intValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_LONG) {
+                return op1.longValue() / op2.longValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_FLOAT) {
+                return op1.floatValue() / op2.floatValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_DOUBLE) {
+                return op1.doubleValue() / op2.doubleValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_BIGDECIMAL) {
+                return new BigDecimal(op1.toString()).divide(new BigDecimal(op2.toString()), BigDecimal.ROUND_HALF_UP);
+            }
 			throw new Exception("不支持的对象执行了\"/\"操作");
 	    }
 
@@ -268,10 +362,18 @@ class NormalNumberOperator {
 			int type1 = OperatorOfNumber.getSeq(op1.getClass());
 			int type2 = OperatorOfNumber.getSeq(op2.getClass());
 			int type = type1 >  type2 ? type1:type2;
-			if(type == NumberType.NUMBER_TYPE_BYTE) return op1.byteValue() % op2.byteValue();
-			if(type == NumberType.NUMBER_TYPE_SHORT) return op1.shortValue() % op2.shortValue();
-			if(type == NumberType.NUMBER_TYPE_INT) return op1.intValue() % op2.intValue();
-			if(type == NumberType.NUMBER_TYPE_LONG) return op1.longValue() % op2.longValue();
+			if(type == NumberType.NUMBER_TYPE_BYTE) {
+                return op1.byteValue() % op2.byteValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_SHORT) {
+                return op1.shortValue() % op2.shortValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_INT) {
+                return op1.intValue() % op2.intValue();
+            }
+			if(type == NumberType.NUMBER_TYPE_LONG) {
+                return op1.longValue() % op2.longValue();
+            }
 			throw new Exception("不支持的对象执行了\"mod\"操作");
      }
 }

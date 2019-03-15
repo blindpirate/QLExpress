@@ -258,8 +258,12 @@ public class RuleManager {
         while(max+1<words.length && (words[max+1].word.equals(")")||words[max+1].word.equals("("))){
             max++;
         }
-        if(min<0) min = 0;
-        if(max>=words.length) max = words.length-1;
+        if(min<0) {
+            min = 0;
+        }
+        if(max>=words.length) {
+            max = words.length-1;
+        }
         StringBuilder result = new StringBuilder();
         int balance = 0;//小括号的相互匹配数量
         for(int i=min;i<=max;i++)
@@ -293,8 +297,12 @@ public class RuleManager {
         while(max+1<words.length && (words[max+1].word.equals(")")||words[max+1].word.equals("("))){
             max++;
         }
-        if(min<0) min = 0;
-        if(max>=words.length) max = words.length-1;
+        if(min<0) {
+            min = 0;
+        }
+        if(max>=words.length) {
+            max = words.length-1;
+        }
         StringBuilder result = new StringBuilder();
         int balance = 0;//小括号的相互匹配数量
         for(int i=min;i<=max;i++)

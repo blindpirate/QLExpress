@@ -51,22 +51,25 @@ public class OperatorEqualsLessMore extends Operator {
 		boolean result = false;
 		if (i > 0) {
 			if (opStr.equals(">") || opStr.equals(">=") || opStr.equals("!=")
-					|| opStr.equals("<>"))
-				result = true;
-			else
-				result = false;
+					|| opStr.equals("<>")) {
+                result = true;
+            } else {
+                result = false;
+            }
 		} else if (i == 0) {
 			if (opStr.equals("=") || opStr.equals("==") || opStr.equals(">=")
-					|| opStr.equals("<="))
-				result = true;
-			else
-				result = false;
+					|| opStr.equals("<=")) {
+                result = true;
+            } else {
+                result = false;
+            }
 		} else if (i < 0) {
 			if (opStr.equals("<") || opStr.equals("<=") || opStr.equals("!=")
-					|| opStr.equals("<>"))
-				result = true;
-			else
-				result = false;
+					|| opStr.equals("<>")) {
+                result = true;
+            } else {
+                result = false;
+            }
 		}
 		return result;
 	}

@@ -39,8 +39,9 @@ public class WordSplit
 	         while(index >0 && str.charAt(index - 1) =='\\'){
 	         	index = str.indexOf(c,index + 1);
 	         }
-	         if (index < 0)
-	         	throw new Exception("字符串没有关闭");
+	         if (index < 0) {
+                 throw new Exception("字符串没有关闭");
+             }
 	         String tempDealStr = str.substring(i,index + 1);
 	         //处理 \\，\"的情况
 	         String tmpResult = "";
@@ -119,8 +120,9 @@ public class WordSplit
 	}
 
 	protected static boolean isNumber(String str) {
-		if (str == null || str.equals(""))
-			return false;
+		if (str == null || str.equals("")) {
+            return false;
+        }
 		char c = str.charAt(0);
 		if (c >= '0' && c <= '9') { // 数字
 			return true;

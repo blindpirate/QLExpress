@@ -78,8 +78,9 @@ public class TestMethodParams {
         }
         Integer result = 0;
         for(Integer obj:params){
-            if(obj!=null)
+            if(obj!=null) {
                 result = result+obj;
+            }
         }
         System.out.println(result);
         return result;
@@ -93,8 +94,9 @@ public class TestMethodParams {
         }
         String result = "";
         for(Object obj:params){
-            if(obj!=null)
+            if(obj!=null) {
                 result = result+obj.toString()+",";
+            }
         }
         System.out.println(result);
         return result;

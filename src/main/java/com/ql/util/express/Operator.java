@@ -71,14 +71,16 @@ public abstract class Operator extends OperatorBase {
             //数字比较
             compareResult = OperatorOfNumber.compareNumber((Number) op1, (Number) op2);
         } else if ((op1 instanceof Boolean) && (op2 instanceof Boolean)) {
-            if (((Boolean) op1).booleanValue() == ((Boolean) op2).booleanValue())
+            if (((Boolean) op1).booleanValue() == ((Boolean) op2).booleanValue()) {
                 compareResult = 0;
-            else
+            } else {
                 compareResult = -1;
+            }
         } else if ((op1 instanceof Date) && (op2 instanceof Date)) {
             compareResult = ((Date) op1).compareTo((Date) op2);
-        } else
+        } else {
             throw new Exception(op1 + "和" + op2 + "不能执行compare 操作");
+        }
         return compareResult;
     }
     

@@ -36,14 +36,16 @@ public class OperateData implements java.io.Serializable {
     	return this.type;
     }
 	public Class<?> getType(InstructionSetContext parent) throws Exception {
-		if (type != null)
-			return type;
+		if (type != null) {
+            return type;
+        }
 
 		Object obj = this.getObject(parent);
-		if (obj == null)
-			return null;
-		else
-			return obj.getClass();
+		if (obj == null) {
+            return null;
+        } else {
+            return obj.getClass();
+        }
 	}
 
 	public final Object getObject(InstructionSetContext context) throws Exception {
@@ -75,9 +77,9 @@ public class OperateData implements java.io.Serializable {
 		return result;
 	}
 	public String toString() {
-		if( this.dataObject == null)
-			return this.type + ":null";
-		else{
+		if( this.dataObject == null) {
+            return this.type + ":null";
+        } else{
 			if(this.dataObject instanceof Class){
 				return ExpressUtil.getClassName((Class<?>)this.dataObject);
 			}else{

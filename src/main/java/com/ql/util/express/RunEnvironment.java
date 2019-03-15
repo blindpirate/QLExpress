@@ -99,8 +99,9 @@ public final class RunEnvironment {
 			return this.dataContainer[point];		
 		}
 		public OperateData pop(){
-			if(point <0)
-				throw new RuntimeException("系统异常，堆栈指针错误");
+			if(point <0) {
+                throw new RuntimeException("系统异常，堆栈指针错误");
+            }
 			OperateData result = this.dataContainer[point];
 			this.point--;
 			return result;

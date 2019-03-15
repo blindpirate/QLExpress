@@ -13,8 +13,9 @@ public class OperatorMinMax extends Operator {
 		}
 		Object result = list[0];
 
-		for (int i = 1; i < list.length; i++)
-			result = executeInner(result, list[i]);
+		for (int i = 1; i < list.length; i++) {
+            result = executeInner(result, list[i]);
+        }
 		return result;
 	}
 
@@ -23,15 +24,17 @@ public class OperatorMinMax extends Operator {
 		Object result = null;
 		int compareResult = Operator.compareData(op1,op2);
 		if (this.name.equals("min")) {
-			if (compareResult < 0)
-				result = op1;
-			else
-				result = op2;
+			if (compareResult < 0) {
+                result = op1;
+            } else {
+                result = op2;
+            }
 		} else if (this.name.equals("max")) {
-			if (compareResult < 0)
-				result = op2;
-			else
-				result = op1;
+			if (compareResult < 0) {
+                result = op2;
+            } else {
+                result = op1;
+            }
 		}
 		return result;
 	}
